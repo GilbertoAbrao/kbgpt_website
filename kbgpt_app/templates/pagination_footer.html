@@ -1,0 +1,118 @@
+
+                            <div class="row mt-3">
+
+                                <!-- Rows per Page -->
+
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="dataTables_length">
+                                        <nav>
+                                            <ul class="pagination pagination-sm">
+                                                {% for rp in list_rows_per_page %}
+                                                    <li class="page-item {% if rp == rows_per_page %} active {% endif %}">
+                                                        <a class="page-link"
+                                                           href="{% url url_list_name %}?l={{ rp }}">{{ rp }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                                
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+
+                                <!-- End Rows per Page -->
+
+
+                                <!-- Page Navigation -->
+
+                                <div class="col-sm-12 col-md-8">
+                                    <div class="float-center dataTables_paginate paging_simple_numbers"
+                                         id="selection-datatable_paginate">
+                                        <ul class="pagination pagination-rounded">
+
+                                            {% if not object_list.has_previous %}
+                                                <li class="paginate_button page-item previous disabled"
+                                                    id="selection-datatable_previous">
+                                                    <a href="#" aria-controls="selection-datatable" data-dt-idx="0"
+                                                       tabindex="0" class="page-link"><i
+                                                            class="mdi mdi-chevron-left"></i>
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li class="paginate_button page-item previous"
+                                                    id="selection-datatable_previous">
+                                                    <a href="{% url url_list_name %}?p={{ object_list.previous_page_number }}&l={{ rows_per_page }}"
+                                                       aria-controls="selection-datatable" data-dt-idx="0" tabindex="0"
+                                                       class="page-link">
+                                                        <i class="mdi mdi-chevron-left"></i>
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+
+
+                                            {% for n in object_list.paginator.page_range %}
+
+                                                {% if n == object_list.number %}
+
+                                                    <li class="paginate_button page-item active">
+                                                        <a href=""
+                                                           aria-controls="selection-datatable"
+                                                           data-dt-idx="1" tabindex="0"
+                                                           class="page-link">{{ n }}</a>
+                                                    </li>
+
+
+
+                                                {% else %}
+
+                                                    <li class="paginate_button page-item ">
+                                                        <a href="{% url url_list_name %}?p={{ n }}&l={{ rows_per_page }}"
+                                                           aria-controls="selection-datatable"
+                                                           data-dt-idx="2" tabindex="0"
+                                                           class="page-link">{{ n }}</a>
+                                                    </li>
+
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                            {% if not object_list.has_next %}
+
+                                                <li class="paginate_button page-item next disabled"
+                                                    id="selection-datatable_next"><a
+                                                        href="#" aria-controls="selection-datatable" data-dt-idx="7"
+                                                        tabindex="0" class="page-link"><i
+                                                        class="mdi mdi-chevron-right"></i></a>
+                                                </li>
+
+                                            {% else %}
+
+                                                <li class="paginate_button page-item next"
+                                                    id="selection-datatable_next"><a
+                                                        href="{% url url_list_name %}?p={{ object_list.next_page_number }}&l={{ rows_per_page }}"
+                                                        aria-controls="selection-datatable" data-dt-idx="7"
+                                                        tabindex="0" class="page-link"><i
+                                                        class="mdi mdi-chevron-right"></i></a>
+                                                </li>
+
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- End Page Navigation -->
+
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <!-- Table Info -->
+                                <div class="col-md-12">
+                                    <div class="text-center dataTables_info">From {{ object_list.start_index }} To {{ object_list.end_index }} of {{ object_list.paginator.count }} records
+                                    </div>
+                                </div>
+
+                                <!-- End Table Info -->
+
+                            </div>

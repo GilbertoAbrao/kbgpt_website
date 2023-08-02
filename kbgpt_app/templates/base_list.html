@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
+
+    <!-- Datatables css -->
+    <link href="{% static 'css/vendor/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/vendor/responsive.bootstrap4.css' %}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+{% block css_2 %} {#    CODIGO DO FILHO ENTRA AQUI    #} {% endblock %}
+
+{% block page_title %} {#    CODIGO DO FILHO ENTRA AQUI    #} {% endblock %}
+
+{% block content %} {#    CODIGO DO FILHO ENTRA AQUI    #} {% endblock %}
+
+{% block javascript %}
+
+    <!-- Datatables js -->
+    <script src="{% static 'js/vendor/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/vendor/dataTables.bootstrap4.js' %}"></script>
+    <script src="{% static 'js/vendor/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'js/vendor/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/vendor/dataTables.buttons.min.js' %}"></script>
+
+    <!-- Datatable Init js -->
+    <script type="text/javascript">
+
+    </script>
+    <script src="{% static 'js/myown.datatable-init_pt-br.js' %}"></script>
+
+{% endblock %}
+
+{% block javascript_2 %}  {#   CODIGO DO FILHO ENTRA AQUI    #}  {% endblock %}

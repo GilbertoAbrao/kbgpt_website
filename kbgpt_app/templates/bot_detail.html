@@ -1,0 +1,156 @@
+{% extends 'base_detail.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block page_title %} My Bots {% endblock %}
+
+{% block page_list %} {% url url_list_name %} {% endblock %}
+
+{% block form %}
+
+
+
+<form method="post" class="row mb-3" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {% crispy form %}
+
+
+    <!-- Save buttom -->
+    <div class="d-grid gap-2 d-md-block">
+        <button type="submit" class="btn btn-primary" id="confirm_btn"><i class="mdi mdi-check"></i>
+            Save
+        </button>
+    </div>
+    <!-- End Save buttom -->
+
+</form>
+
+
+    <!-- List of files -->
+
+    <div class="card" class="row">
+
+        {% if form.instance.id and form.instance.status == 'active'%}
+        <!-- Add Buttom -->
+            <div class="card-header">
+                <form method="post" enctype="multipart/form-data" class="row mt-6" action="{% url child_create_url form.instance.id %}">
+                    {% csrf_token %}
+                    {{ file_upload_form.as_p }}
+                    <button type="submit" class="btn btn-primary" id="add_document">Add File</button>
+                </form>
+            </div>
+        {% endif %}
+
+        <div class="card-body">
+
+            {% if not child_object_list %}
+
+                <!-- 
+                    <h3>Add documents into this chat bot</h3>
+                -->
+
+            {% else %}
+
+
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="multi-item-preview">
+                        <div id="selection-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+
+                                    <!-- Table -->
+
+                                    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                                        <thead>
+                                        <tr>
+
+                                            <!-- Table Header-->
+
+                                            <th>Date</th>
+                                            <th>File's name</th>
+                                            <th>Status</th>
+                                            <th></th>
+
+                                            <!-- End Table Header-->
+
+                                        </tr>
+                                        </thead>
+
+
+                                        <tbody>
+
+                                        {% for obj in child_object_list %}
+
+                                            <!-- Table Row-->
+
+                                            <tr>
+                                                <td>{{ obj.created_at }}</td>
+                                                <td>{{ obj.name }}</td>
+                                                <td>{{ obj.status }}</td>
+                                            </tr>
+
+                                            <!-- End Table Row-->
+
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+
+                                    <!-- End Table Rows-->
+
+
+                                </div>
+                            </div>
+
+
+                            <!-- Pagination Footer-->
+
+                          
+
+                            <!-- End Pagination Footer-->
+
+                        </div>
+                    </div> <!-- end preview-->
+                </div>
+
+                <!-- end table content-->
+
+
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- End List of files-->
+
+    <!-- Delete buttom -->
+    {% if form.instance.id %}
+        <form method="post" class="row mt-3" action="{% url url_delete_name form.instance.id %}">
+            {% csrf_token %}
+            <div class="d-grid gap-2 d-md-block">
+                <button type="submit" class="btn btn-danger" id="delete_btn"><i class="mdi mdi-trash-can"></i>
+                    Delete
+                </button>
+            </div>
+        </form>
+    {% endif %}
+    <!-- End Delete buttom -->
+
+
+{% endblock %}
+
+
+{% block javascript_2 %}
+
+    <!-- file upload dropzone -->
+    <script src="{% static 'js/vendor/dropzone.min.js' %}"></script>
+    <script src="{% static 'js/ui/component.fileupload.js' %}"></script>
+
+{% endblock %}

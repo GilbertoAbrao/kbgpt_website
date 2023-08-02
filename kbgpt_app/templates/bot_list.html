@@ -1,0 +1,121 @@
+{% extends 'base_list.html' %}
+
+{% block page_title %} My Bots {% endblock %}
+
+{% block content %}
+
+    <div class="card">
+
+
+        <!-- Add Buttom -->
+        <div class="card-header">
+            <a href="{% url url_create_name %}" class="btn btn-primary"><i class="mdi mdi-plus me-1"></i>
+                <span>New</span> </a>
+        </div>
+
+        <div class="card-body">
+
+            {% if not object_list %}
+
+                <h3>Empty</h3>
+
+            {% else %}
+
+
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="multi-item-preview">
+                        <div id="selection-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+
+                                    <!-- Table -->
+
+                                    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                                        <thead>
+                                        <tr>
+
+                                            <!-- Table Header-->
+
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Created</th>
+                                            <th></th>
+
+                                            <!-- End Table Header-->
+
+                                        </tr>
+                                        </thead>
+
+
+                                        <tbody>
+
+                                        {% for obj in object_list %}
+
+                                            <!-- Table Row-->
+
+                                            <tr>
+                                                <td>{{ obj.name }}</td>
+                                                <td>{{ obj.description }}</td>
+                                                <td>{{ obj.status }}</td>
+                                                <td>{{ obj.created_at }}</td>
+                                                <td>
+
+                                                    <!-- Edit Buttom -->
+
+                                                    <a href="{% url url_update_name obj.id %}"
+                                                       class="btn btn-primary">
+                                                        <i class="mdi mdi-pencil"></i>
+                                                    </a>
+
+                                                    <!-- Delete Buttom -->
+
+                                                    <a href="{% url url_delete_name obj.id %}"
+                                                       class="btn btn-danger">
+                                                        <i class="mdi mdi-trash-can"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            <!-- End Table Row-->
+
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+
+
+                                    <!-- End Table Rows-->
+
+
+                                </div>
+                            </div>
+
+
+                            <!-- Pagination Footer-->
+
+                           {% include 'pagination_footer.html' %}
+
+                            <!-- End Pagination Footer-->
+
+                        </div>
+                    </div> <!-- end preview-->
+                </div>
+
+                <!-- end table content-->
+
+
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript_2 %}
+
+
+
+{% endblock %}

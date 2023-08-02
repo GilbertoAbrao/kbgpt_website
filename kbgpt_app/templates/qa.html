@@ -1,0 +1,50 @@
+{% extends 'base_detail.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %} Questions & Answers {% endblock %}
+
+{% block page_list %} {% url url_list_name %} {% endblock %}
+
+{% block form %}
+
+    <form method="post" class="row mt-3 mb-3" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {% crispy form %}
+
+
+        <!-- Save buttom -->
+        <div class="d-grid gap-2 d-md-block mt-3">
+            <button type="submit" class="btn btn-primary" id="confirm_btn"><i class="mdi mdi-check"></i>
+                Ask
+            </button>
+        </div>
+        <!-- End Save buttom -->
+
+    </form>
+
+
+    <!-- Answers -->
+
+    <div class="card" class="row mt-3">
+
+        <!-- div for text of the answer -->
+        <h3>
+            {{ answer }}
+        </h3>
+        
+    </div>
+
+    <!-- End Answers -->
+
+
+
+
+{% endblock %}
+
+
+{% block javascript_2 %}
+
+
+{% endblock %}

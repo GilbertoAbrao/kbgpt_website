@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block page_title %}{% endblock %}
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-light-lighten p-2">
+        <li class="breadcrumb-item active"><a href="{% block page_list %}{% endblock %}"><i class="uil-arrow-left"></i>
+            Back</a></li>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+
+        {% if form_product.errors %}
+            {% for field in form_product %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% block form %} {% endblock %}
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- fields masks -->
+    <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'js/apply_br_masks.js' %}"></script>
+
+    {#    Overwrite class Selects that didn't work with Crispy         #}
+    <script type="text/javascript">
+
+        $("select").each(function () {
+            $(this).removeClass("form-control").addClass("form-select");
+        });
+
+    </script>
+
+
+{% endblock %}
