@@ -2,3 +2,57 @@
 /.env
 /.venv
 /.vscode
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Database
+*.sqlite3
+*.db
+
+# Static files
+staticfiles/
+media/
+
+# Log files
+logs/
+*.log
+
+# Configuration files
+.env
+.env.local
+.env.*.local
+.env.*.prod
+
+# Other
+*.bak
+*.swp
+*.tmp
+.DS_Store
+node_modules/
