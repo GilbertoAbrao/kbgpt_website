@@ -1,0 +1,97 @@
+# Django Chatbot Project
+
+This is a Django project that implements a chatbot for customer support. The chatbot uses natural language processing (NLP) to understand customer queries and provide relevant responses.
+
+## Installation
+
+To install the project, follow these steps:
+
+1. Clone the repository to your local machine:
+
+   ```
+   git clone https://github.com/your-username/django-chatbot.git
+   ```
+
+2. Create a virtual environment and activate it:
+
+   ```
+   python -m venv env
+   source env/bin/activate
+   ```
+
+3. Install the project dependencies:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Create a `.env` file in the project root directory with the following contents:
+
+   ```
+   SECRET_KEY=your-secret-key
+   DEBUG=True
+   ```
+
+5. Run the database migrations:
+
+   ```
+   python manage.py migrate
+   ```
+
+6. Start the development server:
+
+   ```
+   python manage.py runserver
+   ```
+
+7. Open your web browser and navigate to `http://localhost:8000` to access the chatbot.
+
+## Usage
+
+To use the chatbot, follow these steps:
+
+1. Open your web browser and navigate to `http://localhost:8000`.
+
+2. Type your query in the chat window and press Enter.
+
+3. The chatbot will process your query and provide a response.
+
+4. If you're not satisfied with the response, you can type another query and press Enter.
+
+5. To exit the chat, type "exit" and press Enter.
+
+## Contributing
+
+If you'd like to contribute to the project, please follow these steps:
+
+1. Fork the repository to your own GitHub account.
+
+2. Create a new branch from the `main` branch:
+
+   ```
+   git checkout -b my-feature-branch main
+   ```
+
+3. Make your changes and commit them:
+
+   ```
+   git add .
+   git commit -m "Add new feature"
+   ```
+
+4. Push your changes to your forked repository:
+
+   ```
+   git push origin my-feature-branch
+   ```
+
+5. Create a pull request from your forked repository to the original repository.
+
+6. Wait for the maintainers to review and merge your pull request.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+You can customize this README file to match your specific project requirements. For example, you may need to add additional sections or remove some of the existing sections if they don't apply to your project.
+
